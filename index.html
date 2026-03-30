@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Melu.nailsok</title>
+
+<style>
+body {
+    background-color: black;
+    color: #ffc0cb;
+    font-family: Arial;
+    text-align: center;
+}
+
+.container {
+    max-width: 400px;
+    margin: auto;
+    padding: 20px;
+    border: 2px solid #ffc0cb;
+    border-radius: 10px;
+}
+
+select, input {
+    width: 90%;
+    padding: 8px;
+    margin: 5px;
+    border-radius: 5px;
+    border: none;
+}
+
+button {
+    background-color: #ffc0cb;
+    color: black;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.total {
+    font-size: 20px;
+    margin-top: 10px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+<h2>Melu.nailsok 💅</h2>
+
+<select id="tecnica">
+<option value="17000">Esmaltado semipermanente</option>
+<option value="18000">Esmaltado en pies</option>
+<option value="23000">Capping gel</option>
+<option value="25000">Esculpidas en gel</option>
+</select>
+
+<select id="decoracion">
+<option value="0">Sin decoración</option>
+<option value="800">Uña completa strass</option>
+<option value="200">Polvo chrome</option>
+<option value="500">Encapsulado</option>
+<option value="300">Babyboomer</option>
+<option value="300">Aura</option>
+<option value="200">French</option>
+<option value="250">Nail art</option>
+<option value="250">Strass</option>
+<option value="200">Cat eye</option>
+<option value="1000">Dijes</option>
+<option value="300">Relieve</option>
+<option value="200">Blooming</option>
+<option value="1000">Arreglo de uña</option>
+</select>
+
+<input type="number" id="cantidad" placeholder="Cantidad de uñas">
+
+<select id="retiro">
+<option value="0">Sin retiro</option>
+<option value="6000">Retiro propio</option>
+<option value="8000">Retiro de colega</option>
+</select>
+
+<button onclick="calcular()">Calcular</button>
+
+<div class="total" id="resultado">Total: $0</div>
+
+<button onclick="enviar()">Enviar por WhatsApp</button>
+</div>
+
+<script>
+function calcular() {
+let t = parseInt(document.getElementById("tecnica").value);
+let d = parseInt(document.getElementById("decoracion").value);
+let c = parseInt(document.getElementById("cantidad").value) || 0;
+let r = parseInt(document.getElementById("retiro").value);
+
+let total = t + (d * c) + r;
+
+document.getElementById("resultado").innerText = "Total: $" + total;
+
+window.msg = "Hola! Quiero este servicio 💅%0A" +
+"Técnica: " + document.getElementById("tecnica").selectedOptions[0].text + "%0A" +
+"Decoración: " + document.getElementById("decoracion").selectedOptions[0].text + "%0A" +
+"Cantidad: " + c + "%0A" +
+"Retiro: " + document.getElementById("retiro").selectedOptions[0].text + "%0A" +
+"Total: $" + total;
+}
+
+function enviar() {
+let numero = "549XXXXXXXXXX"; // CAMBIAR
+window.open("https://wa.me/" + numero + "?text=" + window.msg);
+}
+</script>
+
+</body>
+</html>
